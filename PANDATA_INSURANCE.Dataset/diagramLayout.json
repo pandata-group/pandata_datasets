@@ -1,0 +1,191 @@
+{
+  "version": "1.1.0",
+  "diagrams": [
+    {
+      "ordinal": 0,
+      "scrollPosition": {
+        "x": 0,
+        "y": 73.692205262823393
+      },
+      "nodes": [
+        {
+          "location": {
+            "x": 904.38298122420031,
+            "y": 591.623334034053
+          },
+          "nodeIndex": "CLAIMS_MASTER",
+          "nodeLineageTag": "4c6c70a9-d330-4e4d-b0d2-2c47db6fd6f5",
+          "size": {
+            "height": 329.93720021794547,
+            "width": 234
+          },
+          "zIndex": 11
+        },
+        {
+          "location": {
+            "x": 896.11628032568387,
+            "y": 1079.8466191458579
+          },
+          "nodeIndex": "CLAIMS_PAYMENT",
+          "nodeLineageTag": "71b0adcd-3415-4fd5-85d0-f3dd1dda75c0",
+          "size": {
+            "height": 285.90353943934394,
+            "width": 234
+          },
+          "zIndex": 10
+        },
+        {
+          "location": {
+            "x": 964.78406852251464,
+            "y": 1452.6758979311076
+          },
+          "nodeIndex": "CLAIMS_RESERVES",
+          "nodeLineageTag": "a7ee3786-ec3c-4349-9788-840433b58098",
+          "size": {
+            "height": 286.06890040046846,
+            "width": 234
+          },
+          "zIndex": 8
+        },
+        {
+          "location": {
+            "x": 1519.1799862276523,
+            "y": 604.560492377168
+          },
+          "nodeIndex": "POLICY_MASTER",
+          "nodeLineageTag": "b525251c-e3f8-40cd-9fda-34505c91968a",
+          "size": {
+            "height": 321.81677156867931,
+            "width": 234
+          },
+          "zIndex": 6
+        },
+        {
+          "location": {
+            "x": 1783.5273597958776,
+            "y": 981.69677621872324
+          },
+          "nodeIndex": "POLICY_PREMIUM",
+          "nodeLineageTag": "5fd067d1-0ee7-4b05-87e6-8d27f06aa314",
+          "size": {
+            "height": 305.60037767728249,
+            "width": 234
+          },
+          "zIndex": 3
+        },
+        {
+          "location": {
+            "x": 1524.0093398572917,
+            "y": 117.05385733145948
+          },
+          "nodeIndex": "POLICY_RENEWALS",
+          "nodeLineageTag": "ea71a241-0e3f-4984-acbe-a52208b44534",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 5
+        },
+        {
+          "location": {
+            "x": 2302.0848554432109,
+            "y": 1013.5004158448252
+          },
+          "nodeIndex": "PRODUCT_DISCOUNTS",
+          "nodeLineageTag": "8ba4cb68-8adc-43cc-80a4-644e11c2c0d2",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 4
+        },
+        {
+          "location": {
+            "x": 2077.0748034974217,
+            "y": 598.44586041017476
+          },
+          "nodeIndex": "PRODUCT_MASTER",
+          "nodeLineageTag": "ed4c1b97-7db2-406f-8d4c-84843c567b6e",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 13
+        },
+        {
+          "location": {
+            "x": 2301.7236650481063,
+            "y": 235.36889656193287
+          },
+          "nodeIndex": "PRODUCT_PRICING",
+          "nodeLineageTag": "dc6b4b7f-cf82-4dcf-a01c-652dcc534b70",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 7
+        },
+        {
+          "location": {
+            "x": 978.45869399175581,
+            "y": 126.73509936580371
+          },
+          "nodeIndex": "CUSTOMER",
+          "nodeLineageTag": "e74d3316-1752-4d79-b83b-879d09b911c5",
+          "size": {
+            "height": 296,
+            "width": 234
+          },
+          "zIndex": 1
+        },
+        {
+          "location": {
+            "x": 1514.8857402787046,
+            "y": 1358.5290805213162
+          },
+          "nodeIndex": "MEASURES TABLE",
+          "nodeLineageTag": "bf177301-0930-4d02-8a27-25cbb03f45ec",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 2
+        },
+        {
+          "location": {
+            "x": 1274.1018548627612,
+            "y": 1051.1711848386776
+          },
+          "nodeIndex": "DIM_DATE",
+          "nodeLineageTag": "6f753deb-d1b1-4537-89ec-5e13779860a1",
+          "size": {
+            "height": 300,
+            "width": 234
+          },
+          "zIndex": 9
+        },
+        {
+          "location": {
+            "x": 1789.35609004151,
+            "y": 744.53353688710661
+          },
+          "nodeIndex": "LOB",
+          "nodeLineageTag": "dcfe9677-d2b5-495c-b5d8-99dfb192b0fb",
+          "size": {
+            "height": 104,
+            "width": 234
+          },
+          "zIndex": 12
+        }
+      ],
+      "name": "All tables",
+      "zoomValue": 41.252666425314068,
+      "pinKeyFieldsToTop": false,
+      "showExtraHeaderInfo": false,
+      "hideKeyFieldsWhenCollapsed": false,
+      "tablesLocked": false
+    }
+  ],
+  "selectedDiagram": "All tables",
+  "defaultDiagram": "All tables"
+}
