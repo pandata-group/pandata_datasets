@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "PANDATA_ECOMMERCE"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "faa1a188-381d-4e5d-ac82-a8586f48f33b"
+  }
+}

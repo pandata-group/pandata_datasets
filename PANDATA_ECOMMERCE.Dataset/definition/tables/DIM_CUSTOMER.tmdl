@@ -1,0 +1,187 @@
+table DIM_CUSTOMER
+	lineageTag: 398c8cd7-abbb-4be8-b7e6-37dba28245f1
+
+	column CUSTOMER_ID
+		dataType: string
+		lineageTag: 577c2186-80db-4c4f-8494-edda4124d77e
+		summarizeBy: none
+		sourceColumn: CUSTOMER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column FIRST_NAME
+		dataType: string
+		lineageTag: f39c5065-4bca-471b-a2d3-114f7d4b7daa
+		summarizeBy: none
+		sourceColumn: FIRST_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAST_NAME
+		dataType: string
+		lineageTag: 2d5dc3fa-d966-46c7-a455-de27a30708cb
+		summarizeBy: none
+		sourceColumn: LAST_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column FULL_NAME
+		dataType: string
+		lineageTag: 192f9907-0429-49f3-9950-6c276d06d83c
+		summarizeBy: none
+		sourceColumn: FULL_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column GENDER
+		dataType: string
+		lineageTag: 148ef535-a1c2-4ae3-aac5-2d8d9674f09a
+		summarizeBy: none
+		sourceColumn: GENDER
+
+		annotation SummarizationSetBy = Automatic
+
+	column DOB
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 2569d669-5644-414a-83b3-a61938cd5502
+		summarizeBy: none
+		sourceColumn: DOB
+
+		variation Variation
+			isDefault
+			relationship: 2539ecfb-29d2-46cf-9956-afb26a54deb3
+			defaultHierarchy: LocalDateTable_eb5ec09d-3c5c-4d82-88aa-21d44cae74c4.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column AGE
+		dataType: double
+		lineageTag: 12c6b227-ea84-4b8b-b25c-836099d93987
+		summarizeBy: sum
+		sourceColumn: AGE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column EMAIL
+		dataType: string
+		lineageTag: 08a2f95f-e796-4fde-8b43-84a5d79725c6
+		summarizeBy: none
+		sourceColumn: EMAIL
+
+		annotation SummarizationSetBy = Automatic
+
+	column PHONE
+		dataType: string
+		lineageTag: 048193f0-5da3-4887-ab7a-2d21e07bdd16
+		summarizeBy: none
+		sourceColumn: PHONE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ADDRESS
+		dataType: string
+		lineageTag: af5f90e7-4b46-4520-8586-4e21d66ff3b2
+		summarizeBy: none
+		sourceColumn: ADDRESS
+
+		annotation SummarizationSetBy = Automatic
+
+	column CITY
+		dataType: string
+		lineageTag: e024410f-fdf1-4a73-a9ab-31b0ea0c9f2a
+		summarizeBy: none
+		sourceColumn: CITY
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATE
+		dataType: string
+		lineageTag: 0f8a47d7-8792-42b9-b415-e248259d6ead
+		summarizeBy: none
+		sourceColumn: STATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ZIPCODE
+		dataType: string
+		lineageTag: 262051e9-b531-4388-8887-6d286d984cbc
+		summarizeBy: none
+		sourceColumn: ZIPCODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column COUNTRY
+		dataType: string
+		lineageTag: fbca8011-3ca9-4e5d-88d5-276150bec62d
+		summarizeBy: none
+		sourceColumn: COUNTRY
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMER_TIER
+		dataType: string
+		lineageTag: d4357296-947b-4249-b6b3-faa3fba7cfec
+		summarizeBy: none
+		sourceColumn: CUSTOMER_TIER
+
+		annotation SummarizationSetBy = Automatic
+
+	column SIGNUP_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 09351eb9-b9f6-476d-8775-7539088c2c7b
+		summarizeBy: none
+		sourceColumn: SIGNUP_DATE
+
+		variation Variation
+			isDefault
+			relationship: d6c6db68-bba1-4e91-96ad-270d1f55048d
+			defaultHierarchy: LocalDateTable_b399ffc5-d7ba-4002-8837-caa5e4fea728.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column IS_NEW_CUSTOMER
+		dataType: string
+		lineageTag: 434bb7c2-ac6f-448c-b61c-0db34c86c458
+		summarizeBy: none
+		sourceColumn: IS_NEW_CUSTOMER
+
+		annotation SummarizationSetBy = Automatic
+
+	column 'Age Group' =
+			
+			SWITCH(
+			    TRUE(),
+			    DIM_CUSTOMER[AGE] >= 18 && DIM_CUSTOMER[AGE] <= 24, "18-24",
+			    DIM_CUSTOMER[AGE] >= 25 && DIM_CUSTOMER[AGE] <= 34, "25-34",
+			    DIM_CUSTOMER[AGE] >= 35 && DIM_CUSTOMER[AGE] <= 44, "35-44",
+			    DIM_CUSTOMER[AGE] >= 45 && DIM_CUSTOMER[AGE] <= 54, "45-54",
+			    DIM_CUSTOMER[AGE] >= 55 && DIM_CUSTOMER[AGE] <= 64, "55-64",
+			    DIM_CUSTOMER[AGE] >= 65, "65+",
+			    "Unknown"
+			)
+		lineageTag: a627a753-9c45-4b00-bfe9-c5f526390799
+		summarizeBy: none
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_CUSTOMER = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("pandata_partner.snowflakecomputing.com","COMPUTE_WH"),
+				    PANDATA_ECOMMERCE_Database = Source{[Name="PANDATA_ECOMMERCE",Kind="Database"]}[Data],
+				    PUBLIC_Schema = PANDATA_ECOMMERCE_Database{[Name="PUBLIC",Kind="Schema"]}[Data],
+				    DIM_CUSTOMER_Table = PUBLIC_Schema{[Name="DIM_CUSTOMER",Kind="Table"]}[Data]
+				in
+				    DIM_CUSTOMER_Table
+
+	annotation PBI_ResultType = Table
+

@@ -1,0 +1,110 @@
+table DIM_PRODUCT
+	lineageTag: a1eb621a-1ae6-4fa2-b22f-cbb5c76cf62e
+
+	column PRODUCT_ID
+		dataType: string
+		lineageTag: 11c57aea-b88f-490e-af04-79d19342b08d
+		summarizeBy: none
+		sourceColumn: PRODUCT_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCT_NAME
+		dataType: string
+		lineageTag: 4da9602e-e7ab-4bfd-be56-e3bae9167a61
+		summarizeBy: none
+		sourceColumn: PRODUCT_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column BRAND
+		dataType: string
+		lineageTag: 9699582c-a081-49d9-853e-9394bf681f0d
+		summarizeBy: none
+		sourceColumn: BRAND
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATEGORY
+		dataType: string
+		lineageTag: fadfcae9-8c69-4f8f-af6d-2b7ee1a56417
+		summarizeBy: none
+		sourceColumn: CATEGORY
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUBCATEGORY
+		dataType: string
+		lineageTag: 2749ada0-263d-4dc4-920f-0f55535160ab
+		summarizeBy: none
+		sourceColumn: SUBCATEGORY
+
+		annotation SummarizationSetBy = Automatic
+
+	column COST_PRICE
+		dataType: double
+		lineageTag: d2b7fe04-0998-4e90-ad9d-9011f8d7667f
+		summarizeBy: sum
+		sourceColumn: COST_PRICE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column RETAIL_PRICE
+		dataType: double
+		lineageTag: de6e0bc2-64e7-45cf-8922-30c8931bee6e
+		summarizeBy: sum
+		sourceColumn: RETAIL_PRICE
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SUPPLIER_ID
+		dataType: string
+		lineageTag: eadc867c-6189-41d6-b138-d08fdcb4188b
+		summarizeBy: none
+		sourceColumn: SUPPLIER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column LAUNCH_DATE
+		dataType: string
+		lineageTag: 71d31f6f-a64f-4770-b199-aec6c5d9ee30
+		summarizeBy: none
+		sourceColumn: LAUNCH_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRICE_UPDATED_DATE
+		dataType: string
+		lineageTag: 82d0b01c-d732-4a6b-ac26-ff14280b4815
+		summarizeBy: none
+		sourceColumn: PRICE_UPDATED_DATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column IS_ACTIVE
+		dataType: string
+		lineageTag: a5a61cd8-2af0-46bc-ac3b-770af0c68a4c
+		summarizeBy: none
+		sourceColumn: IS_ACTIVE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_PRODUCT = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("pandata_partner.snowflakecomputing.com","COMPUTE_WH"),
+				    PANDATA_ECOMMERCE_Database = Source{[Name="PANDATA_ECOMMERCE",Kind="Database"]}[Data],
+				    PUBLIC_Schema = PANDATA_ECOMMERCE_Database{[Name="PUBLIC",Kind="Schema"]}[Data],
+				    DIM_PRODUCT_Table = PUBLIC_Schema{[Name="DIM_PRODUCT",Kind="Table"]}[Data]
+				in
+				    DIM_PRODUCT_Table
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

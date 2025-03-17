@@ -1,0 +1,138 @@
+table FACT_MARKETING
+	lineageTag: 1da328e3-0626-4782-b1d1-5b2685ec9c22
+
+	column MARKETING_ID
+		dataType: string
+		lineageTag: a1bc8d37-cfd5-4021-b0ad-051a51cea00f
+		summarizeBy: none
+		sourceColumn: MARKETING_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column AD_SPEND
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 4fabc227-6bad-4ed1-81a6-1e9d64b8fc0e
+		summarizeBy: sum
+		sourceColumn: AD_SPEND
+
+		annotation SummarizationSetBy = Automatic
+
+	column CAMPAIGN_ID
+		dataType: string
+		lineageTag: a97d4b6c-4262-435e-aaf0-9aea4fdfd2ef
+		summarizeBy: none
+		sourceColumn: CAMPAIGN_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column DATE_ID
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 67dbf0bc-5376-4170-8707-c2adee67cbf7
+		summarizeBy: none
+		sourceColumn: DATE_ID
+
+		variation Variation
+			isDefault
+			relationship: 45577d45-1e9e-4909-9d0b-ec8b068dc81b
+			defaultHierarchy: LocalDateTable_f894ea85-9fb8-4c30-8b67-e7df0524e893.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column CUSTOMER_ID
+		dataType: string
+		lineageTag: 3fb18ee9-92fd-457b-b382-8a732308525a
+		summarizeBy: none
+		sourceColumn: CUSTOMER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column IMPRESSIONS
+		dataType: double
+		lineageTag: 94bb7034-168a-4f35-91e4-09fe8ceb080c
+		summarizeBy: sum
+		sourceColumn: IMPRESSIONS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CLICKS
+		dataType: double
+		lineageTag: be2add29-9687-4eb4-b52b-2c0958dba057
+		summarizeBy: sum
+		sourceColumn: CLICKS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column CONVERSIONS
+		dataType: double
+		lineageTag: 83bf61de-9ad8-46c6-bd75-074bfe753d64
+		summarizeBy: sum
+		sourceColumn: CONVERSIONS
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column REVENUE
+		dataType: double
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: 92fa9290-aaf1-4932-8f9f-2c8caa8d137c
+		summarizeBy: sum
+		sourceColumn: REVENUE
+
+		annotation SummarizationSetBy = Automatic
+
+	column WEBPAGE_ID
+		dataType: string
+		lineageTag: 72c0c839-3e60-409f-8117-d04635b156a5
+		summarizeBy: none
+		sourceColumn: WEBPAGE_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column TARGET_AUDIENCE_GENDER
+		dataType: string
+		lineageTag: 0d029f2e-a266-4d4e-90da-e93d4241e4b8
+		summarizeBy: none
+		sourceColumn: TARGET_AUDIENCE_GENDER
+
+		annotation SummarizationSetBy = Automatic
+
+	column TARGET_AUDIENCE_AGE
+		dataType: string
+		lineageTag: b8507af8-6db9-43d6-9190-76d78713e8b6
+		summarizeBy: none
+		sourceColumn: TARGET_AUDIENCE_AGE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CHANNEL
+		dataType: string
+		lineageTag: 669b8df9-6a00-4ca7-9c30-48a12d8650cf
+		summarizeBy: none
+		sourceColumn: CHANNEL
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FACT_MARKETING = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("pandata_partner.snowflakecomputing.com","COMPUTE_WH"),
+				    PANDATA_ECOMMERCE_Database = Source{[Name="PANDATA_ECOMMERCE",Kind="Database"]}[Data],
+				    PUBLIC_Schema = PANDATA_ECOMMERCE_Database{[Name="PUBLIC",Kind="Schema"]}[Data],
+				    FACT_MARKETING_Table = PUBLIC_Schema{[Name="FACT_MARKETING",Kind="Table"]}[Data]
+				in
+				    FACT_MARKETING_Table
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+
