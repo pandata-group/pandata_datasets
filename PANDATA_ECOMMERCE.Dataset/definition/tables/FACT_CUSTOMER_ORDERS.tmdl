@@ -1,0 +1,205 @@
+table FACT_CUSTOMER_ORDERS
+	lineageTag: 860545bf-e0cf-454a-9f91-1f934a6e6d56
+
+	column FACT_ORDER_PK
+		dataType: string
+		lineageTag: b2b7e79b-9327-4bfe-ae8a-be2a429541cb
+		summarizeBy: none
+		sourceColumn: FACT_ORDER_PK
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORDER_ID
+		dataType: string
+		lineageTag: f35ed286-6a51-49e8-9da5-fd8361d13040
+		summarizeBy: none
+		sourceColumn: ORDER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CUSTOMER_ID
+		dataType: string
+		lineageTag: db2079ef-7887-4f33-9c5b-8abb4b034d58
+		summarizeBy: none
+		sourceColumn: CUSTOMER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column PRODUCT_ID
+		dataType: string
+		lineageTag: 6b47cb54-8f4b-4019-8206-1c2b5fe23fda
+		summarizeBy: none
+		sourceColumn: PRODUCT_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORDER_DATE_ID
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 4448e753-6fc6-43d0-9752-e8c49bd8b90b
+		summarizeBy: none
+		sourceColumn: ORDER_DATE_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVENTORY_STORAGE_ID
+		dataType: string
+		lineageTag: 4db86a11-f82b-45a4-86a4-a3606d50983a
+		summarizeBy: none
+		sourceColumn: INVENTORY_STORAGE_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SHIPPING_DATE_ID
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: 45e89d40-d57a-4bd9-af37-8df7d0748f23
+		summarizeBy: none
+		sourceColumn: SHIPPING_DATE_ID
+
+		variation Variation
+			isDefault
+			relationship: 7ba6762f-0c8b-4448-9301-a8c9aa013917
+			defaultHierarchy: LocalDateTable_3974089d-fe1d-40ed-87b8-9e05864e1c6e.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column SHIPPING_ZONE
+		dataType: string
+		lineageTag: 79e96f84-1ba1-41a6-a512-18b5615e2132
+		summarizeBy: none
+		sourceColumn: SHIPPING_ZONE
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORDER_AMOUNT
+		dataType: double
+		lineageTag: fe000fde-0a62-4912-8a4b-dfc1625b698d
+		summarizeBy: sum
+		sourceColumn: ORDER_AMOUNT
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column ORDER_QTY
+		dataType: double
+		lineageTag: fa9ee774-782a-4993-8050-393df44dc8ea
+		summarizeBy: sum
+		sourceColumn: ORDER_QTY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SHIPPING_COST
+		dataType: double
+		lineageTag: aa77a4d6-7be5-4001-97fa-44ba1d9b26ec
+		summarizeBy: sum
+		sourceColumn: SHIPPING_COST
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column SHIP_FROM_LOCATION
+		dataType: string
+		lineageTag: b7ba1abd-9f76-455e-9172-ed4172937154
+		summarizeBy: none
+		sourceColumn: SHIP_FROM_LOCATION
+
+		annotation SummarizationSetBy = Automatic
+
+	column SHIP_TO_ADDRESS
+		dataType: string
+		lineageTag: b03f5f68-bc91-4013-b52e-bc31b2d34528
+		summarizeBy: none
+		sourceColumn: SHIP_TO_ADDRESS
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORDER_STATUS
+		dataType: string
+		lineageTag: 7de72626-0c5e-42bf-ae30-b9c6147994ef
+		summarizeBy: none
+		sourceColumn: ORDER_STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column SHIP_STATUS
+		dataType: string
+		lineageTag: 6cd102a4-1a5e-4c8c-ba1d-69e060584d40
+		summarizeBy: none
+		sourceColumn: SHIP_STATUS
+
+		annotation SummarizationSetBy = Automatic
+
+	column DAYS_TO_DELIVER
+		dataType: double
+		lineageTag: 9a2393da-2ef8-483a-978c-ad9991e9ce65
+		summarizeBy: sum
+		sourceColumn: DAYS_TO_DELIVER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column IS_RETURNED
+		dataType: string
+		lineageTag: e853b38a-b8f2-4945-abaa-a2be5effa53f
+		summarizeBy: none
+		sourceColumn: IS_RETURNED
+
+		annotation SummarizationSetBy = Automatic
+
+	column ESTIMATED_ARRIVAL_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: e5680a07-1d75-413f-87a4-b93626327c0f
+		summarizeBy: none
+		sourceColumn: ESTIMATED_ARRIVAL_DATE
+
+		variation Variation
+			isDefault
+			relationship: 0d2bd751-60d9-4349-a945-7058dd43f283
+			defaultHierarchy: LocalDateTable_4c0f0554-5a23-4088-ba22-2c1cf2e2b8c7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ARRIVAL_DATE
+		dataType: dateTime
+		formatString: General Date
+		lineageTag: f539e95c-a7d2-4f07-9deb-50d06b2b2310
+		summarizeBy: none
+		sourceColumn: ARRIVAL_DATE
+
+		variation Variation
+			isDefault
+			relationship: f3818221-3efd-4cac-94db-c129db77b64f
+			defaultHierarchy: LocalDateTable_151f4b23-5b7c-4b89-bc17-196519132edb.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+	column ORDER_SOURCE
+		dataType: string
+		lineageTag: c1fc2f73-d2bb-4029-b204-3db0de0447e6
+		summarizeBy: none
+		sourceColumn: ORDER_SOURCE
+
+		annotation SummarizationSetBy = Automatic
+
+	partition FACT_CUSTOMER_ORDERS = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("pandata_partner.snowflakecomputing.com","COMPUTE_WH"),
+				    PANDATA_ECOMMERCE_Database = Source{[Name="PANDATA_ECOMMERCE",Kind="Database"]}[Data],
+				    PUBLIC_Schema = PANDATA_ECOMMERCE_Database{[Name="PUBLIC",Kind="Schema"]}[Data],
+				    FACT_CUSTOMER_ORDERS_Table = PUBLIC_Schema{[Name="FACT_CUSTOMER_ORDERS",Kind="Table"]}[Data]
+				in
+				    FACT_CUSTOMER_ORDERS_Table
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

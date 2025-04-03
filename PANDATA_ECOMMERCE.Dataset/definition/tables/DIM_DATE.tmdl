@@ -1,0 +1,312 @@
+table DIM_DATE
+	lineageTag: bca0fd0e-ba57-4300-b488-5cb1ce694f2c
+
+	column DATE_KEY_ID
+		dataType: double
+		lineageTag: 7622ad28-c27e-4ac5-904e-f1ac5769d0b2
+		summarizeBy: count
+		sourceColumn: DATE_KEY_ID
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DATE_ID
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: e1f315a7-b188-42ee-b74a-ced4746f6108
+		summarizeBy: none
+		sourceColumn: DATE_ID
+
+		variation Variation
+			isDefault
+			relationship: 5bb08e77-5221-4a6e-8c23-65db2edd7d29
+			defaultHierarchy: LocalDateTable_a85ce2d9-4527-4041-845a-310ef46a46b6.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column DAY_IN_WEEK
+		dataType: double
+		lineageTag: 670bf304-f0f3-4cf9-ae5f-101dfc25f234
+		summarizeBy: sum
+		sourceColumn: DAY_IN_WEEK
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DAYNAME
+		dataType: string
+		lineageTag: 18f4b3d5-a615-4ad0-90bf-e49ca703b00f
+		summarizeBy: none
+		sourceColumn: DAYNAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column DAY_IN_MONTH
+		dataType: double
+		lineageTag: 5fcf7803-3506-4fc6-ae5d-f0474080c9a6
+		summarizeBy: sum
+		sourceColumn: DAY_IN_MONTH
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MONTH_NUMBER
+		dataType: double
+		lineageTag: e5ef2a51-c2d8-4007-89cf-1194d5f8aa51
+		summarizeBy: sum
+		sourceColumn: MONTH_NUMBER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column MONTH_NAME
+		dataType: string
+		lineageTag: 8a36c6e0-45af-42bd-af05-4ab0b08ce6a4
+		summarizeBy: none
+		sourceColumn: MONTH_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column QUARTER
+		dataType: double
+		lineageTag: 185345b5-97ed-4ec2-8b9c-e52ed456ace0
+		summarizeBy: sum
+		sourceColumn: QUARTER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column DAY_IN_QUARTER
+		dataType: double
+		lineageTag: 44f04529-98d4-4f7e-8a26-dba82d349409
+		summarizeBy: sum
+		sourceColumn: DAY_IN_QUARTER
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column YEAR
+		dataType: string
+		lineageTag: b0b9b855-95a5-45ca-85cf-dade66e8834d
+		summarizeBy: none
+		sourceColumn: YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+	column DAY_IN_YEAR
+		dataType: double
+		lineageTag: 5ce426f0-ff59-4b44-8576-7115d6b36136
+		summarizeBy: sum
+		sourceColumn: DAY_IN_YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WEEK_IN_YEAR
+		dataType: double
+		lineageTag: b257cf48-4be5-4819-946e-ef55a982f87e
+		summarizeBy: sum
+		sourceColumn: WEEK_IN_YEAR
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column WEEK_BEGIN_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b4759b6a-a1c0-44af-9747-f153e2c29f88
+		summarizeBy: none
+		sourceColumn: WEEK_BEGIN_DATE
+
+		variation Variation
+			isDefault
+			relationship: 087960d1-6a5a-4737-85fd-2004a669f1d0
+			defaultHierarchy: LocalDateTable_abd8ede3-490f-424d-82c4-a09c23648194.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column WEEK_END_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 853f1b62-b241-416f-9ba5-d50de4fba0f6
+		summarizeBy: none
+		sourceColumn: WEEK_END_DATE
+
+		variation Variation
+			isDefault
+			relationship: 2eec3f87-862e-4592-8739-ba1cb3fa9a4c
+			defaultHierarchy: LocalDateTable_763eacc4-e21b-46a0-baaa-0f1c689dd373.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column MONTH_BEGIN_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 453f6bd1-6142-498f-b0f1-5730ae954bb5
+		summarizeBy: none
+		sourceColumn: MONTH_BEGIN_DATE
+
+		variation Variation
+			isDefault
+			relationship: 20f6b7dd-b115-449a-b7c2-22cb927f40aa
+			defaultHierarchy: LocalDateTable_f3cdc4c5-a975-426c-bfc2-62f75c114fbd.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column MONTH_END_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ebbd3662-7737-4404-bbd1-281e5f756030
+		summarizeBy: none
+		sourceColumn: MONTH_END_DATE
+
+		variation Variation
+			isDefault
+			relationship: 0df8831c-6d32-443d-8c03-43716ed938b1
+			defaultHierarchy: LocalDateTable_9c927538-cf19-480e-9f59-73a9919d246c.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column QUARTER_BEGIN_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c870d41b-7b0a-461d-a008-c91038ebdd09
+		summarizeBy: none
+		sourceColumn: QUARTER_BEGIN_DATE
+
+		variation Variation
+			isDefault
+			relationship: 8fd0fd62-65a0-4eaf-aa16-392ae76e5fe8
+			defaultHierarchy: LocalDateTable_f5537105-1d71-4cd8-8a9b-68f688e28783.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column QUARTER_END_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: cd7f3299-bb90-48ed-8dbe-5f86b0ec7d85
+		summarizeBy: none
+		sourceColumn: QUARTER_END_DATE
+
+		variation Variation
+			isDefault
+			relationship: 83ce6101-ae3d-4dea-a4f8-7d12926d7b60
+			defaultHierarchy: LocalDateTable_3fa98cf3-0411-4086-919b-4441a2b2d0c8.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column YEAR_BEGIN_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 64e6df76-2bf9-43b6-850c-8dd74d71de16
+		summarizeBy: none
+		sourceColumn: YEAR_BEGIN_DATE
+
+		variation Variation
+			isDefault
+			relationship: 031b6e37-206e-4a0e-9b61-787e00e8d9cb
+			defaultHierarchy: LocalDateTable_fc8ec321-b013-4aff-9529-5300e6c120ea.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column YEAR_END_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: ebe2ee43-f205-4221-9f5b-9ef77c88028c
+		summarizeBy: none
+		sourceColumn: YEAR_END_DATE
+
+		variation Variation
+			isDefault
+			relationship: 6b47b78f-5c20-4234-b8d3-1e2fe103df98
+			defaultHierarchy: LocalDateTable_e428a15a-87a4-4f28-9fec-4a52846de4d7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column WEEKDAY_FLAG
+		dataType: string
+		lineageTag: 04292f0d-4e51-48b2-9b84-224a38d53bca
+		summarizeBy: none
+		sourceColumn: WEEKDAY_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column WEEKEND_FLAG
+		dataType: string
+		lineageTag: 22472989-1349-41d2-987a-8fff7bdd099b
+		summarizeBy: none
+		sourceColumn: WEEKEND_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column END_OF_WEEK_FLAG
+		dataType: string
+		lineageTag: 76f1d209-2dcb-4397-883d-0a1159dda8f0
+		summarizeBy: none
+		sourceColumn: END_OF_WEEK_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column QUARTER_END_FLAG
+		dataType: string
+		lineageTag: f26897dd-431d-4d0a-99f0-f759fba54c03
+		summarizeBy: none
+		sourceColumn: QUARTER_END_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column YEAR_END_FLAG
+		dataType: string
+		lineageTag: 64d6bfc3-c623-42d8-a0d8-7523e808fe20
+		summarizeBy: none
+		sourceColumn: YEAR_END_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	column HOLIDAY_FLAG
+		dataType: string
+		lineageTag: 35b0039e-7ba3-41ad-95f5-b3109f19a8d9
+		summarizeBy: none
+		sourceColumn: HOLIDAY_FLAG
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_DATE = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("pandata_partner.snowflakecomputing.com","COMPUTE_WH"),
+				    PANDATA_ECOMMERCE_Database = Source{[Name="PANDATA_ECOMMERCE",Kind="Database"]}[Data],
+				    PUBLIC_Schema = PANDATA_ECOMMERCE_Database{[Name="PUBLIC",Kind="Schema"]}[Data],
+				    DIM_DATE_Table = PUBLIC_Schema{[Name="DIM_DATE",Kind="Table"]}[Data]
+				in
+				    DIM_DATE_Table
+
+	annotation PBI_ResultType = Table
+

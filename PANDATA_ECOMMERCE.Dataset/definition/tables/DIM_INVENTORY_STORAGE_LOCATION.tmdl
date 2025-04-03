@@ -1,0 +1,92 @@
+table DIM_INVENTORY_STORAGE_LOCATION
+	lineageTag: 50aa8490-ea14-4636-9726-4a60c92cb532
+
+	column INVENTORY_STORAGE_ID
+		dataType: string
+		lineageTag: 8ea183dd-1281-4901-adcf-bfc9cbe1e441
+		summarizeBy: none
+		sourceColumn: INVENTORY_STORAGE_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVENTORY_STORAGE_NAME
+		dataType: string
+		lineageTag: 19de8491-eaa6-4525-8579-5745d2f19c0a
+		summarizeBy: none
+		sourceColumn: INVENTORY_STORAGE_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column CITY
+		dataType: string
+		lineageTag: afa23176-0aa8-41f3-b26c-278c0e84f2e6
+		summarizeBy: none
+		sourceColumn: CITY
+
+		annotation SummarizationSetBy = Automatic
+
+	column STATE
+		dataType: string
+		lineageTag: 6889584c-3530-4ef9-8188-8fb2224103e5
+		summarizeBy: none
+		sourceColumn: STATE
+
+		annotation SummarizationSetBy = Automatic
+
+	column COUNTRY
+		dataType: string
+		lineageTag: 3928ffda-7eec-4648-a57e-76871b79ca39
+		summarizeBy: none
+		sourceColumn: COUNTRY
+
+		annotation SummarizationSetBy = Automatic
+
+	column REGION
+		dataType: string
+		lineageTag: 2712fbd1-a933-4e5d-a6e3-6fad6c7a9559
+		summarizeBy: none
+		sourceColumn: REGION
+
+		annotation SummarizationSetBy = Automatic
+
+	column MANAGER_NAME
+		dataType: string
+		lineageTag: ffa0937b-833e-4aac-987f-2bb7f781a912
+		summarizeBy: none
+		sourceColumn: MANAGER_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column INVENTORY_STORAGE_CAPACITY
+		dataType: double
+		lineageTag: fcbd4cb0-9e71-46d3-a484-cbb1c810fd1d
+		summarizeBy: sum
+		sourceColumn: INVENTORY_STORAGE_CAPACITY
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column INVENTORY_STORAGE_CAPACITY_UNIT
+		dataType: string
+		lineageTag: 2420e165-a205-4f61-859a-bfa4e2b8d4d9
+		summarizeBy: none
+		sourceColumn: INVENTORY_STORAGE_CAPACITY_UNIT
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_INVENTORY_STORAGE_LOCATION = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("pandata_partner.snowflakecomputing.com","COMPUTE_WH"),
+				    PANDATA_ECOMMERCE_Database = Source{[Name="PANDATA_ECOMMERCE",Kind="Database"]}[Data],
+				    PUBLIC_Schema = PANDATA_ECOMMERCE_Database{[Name="PUBLIC",Kind="Schema"]}[Data],
+				    DIM_INVENTORY_STORAGE_LOCATION_Table = PUBLIC_Schema{[Name="DIM_INVENTORY_STORAGE_LOCATION",Kind="Table"]}[Data]
+				in
+				    DIM_INVENTORY_STORAGE_LOCATION_Table
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

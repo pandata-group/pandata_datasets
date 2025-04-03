@@ -1,0 +1,98 @@
+table DIM_SUPPLIER
+	lineageTag: ec23817a-5a3d-4f2f-b25b-ea2173075239
+
+	column SUPPLIER_ID
+		dataType: string
+		lineageTag: 2ab067ca-f8a1-4d2f-a746-c711e7e09a80
+		summarizeBy: none
+		sourceColumn: SUPPLIER_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUPPLIER_NAME
+		dataType: string
+		lineageTag: 36e5675b-6b15-444e-9c06-34160b04fd1b
+		summarizeBy: none
+		sourceColumn: SUPPLIER_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUPPLIER_CITY
+		dataType: string
+		lineageTag: 505364ff-33ff-471f-b50c-7030c4b17719
+		summarizeBy: none
+		sourceColumn: SUPPLIER_CITY
+
+		annotation SummarizationSetBy = Automatic
+
+	column SUPPLIER_TYPE
+		dataType: string
+		lineageTag: 63e0c3ac-8d64-4f01-b12c-e0f12eb1fa87
+		summarizeBy: none
+		sourceColumn: SUPPLIER_TYPE
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTACT_NAME
+		dataType: string
+		lineageTag: 1fc47480-65eb-4a53-844a-04ae27a7f024
+		summarizeBy: none
+		sourceColumn: CONTACT_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column CONTACT_EMAIL
+		dataType: string
+		lineageTag: abc65250-699a-474f-961b-66c619fc246e
+		summarizeBy: none
+		sourceColumn: CONTACT_EMAIL
+
+		annotation SummarizationSetBy = Automatic
+
+	column COUNTRY
+		dataType: string
+		lineageTag: dfca863a-b800-4d39-b43e-962c26fd9b1e
+		summarizeBy: none
+		sourceColumn: COUNTRY
+
+		annotation SummarizationSetBy = Automatic
+
+	column RELATIONSHIP_ESTABLISH_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 884bacf7-ddd2-42da-941b-804774374e5c
+		summarizeBy: none
+		sourceColumn: RELATIONSHIP_ESTABLISH_DATE
+
+		variation Variation
+			isDefault
+			relationship: 18916984-de4f-4fb3-9818-a556823980f0
+			defaultHierarchy: LocalDateTable_9b806321-b8ac-4701-9e20-ec537a953e3a.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column IS_LOCAL
+		dataType: string
+		lineageTag: 38c72013-f7aa-4989-ae54-03c17d8ebf9a
+		summarizeBy: none
+		sourceColumn: IS_LOCAL
+
+		annotation SummarizationSetBy = Automatic
+
+	partition DIM_SUPPLIER = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("pandata_partner.snowflakecomputing.com","COMPUTE_WH"),
+				    PANDATA_ECOMMERCE_Database = Source{[Name="PANDATA_ECOMMERCE",Kind="Database"]}[Data],
+				    PUBLIC_Schema = PANDATA_ECOMMERCE_Database{[Name="PUBLIC",Kind="Schema"]}[Data],
+				    DIM_SUPPLIER_Table = PUBLIC_Schema{[Name="DIM_SUPPLIER",Kind="Table"]}[Data]
+				in
+				    DIM_SUPPLIER_Table
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

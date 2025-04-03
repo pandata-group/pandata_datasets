@@ -1,0 +1,154 @@
+table DIM_CAMPAIGN
+	lineageTag: 2a5f756f-5b94-4fd0-968a-d678a54f2a65
+
+	column CAMPAIGN_ID
+		dataType: string
+		lineageTag: 444f1e1c-97b6-4a8f-8065-e55e95cb6b8d
+		summarizeBy: none
+		sourceColumn: CAMPAIGN_ID
+
+		annotation SummarizationSetBy = Automatic
+
+	column CAMPAIGN_NAME
+		dataType: string
+		lineageTag: 9ae44c06-f2f3-4129-9c27-8856a2dbc314
+		summarizeBy: none
+		sourceColumn: CAMPAIGN_NAME
+
+		annotation SummarizationSetBy = Automatic
+
+	column CATEGORY
+		dataType: string
+		lineageTag: 310b0dda-908f-4740-88c8-888077c2b08f
+		summarizeBy: none
+		sourceColumn: CATEGORY
+
+		annotation SummarizationSetBy = Automatic
+
+	column CHANNEL
+		dataType: string
+		lineageTag: b25a14cc-0af0-4b2f-9538-2e8c0c17bc3f
+		summarizeBy: none
+		sourceColumn: CHANNEL
+
+		annotation SummarizationSetBy = Automatic
+
+	column START_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: 96882d1c-fef7-4c95-83eb-7356e53ada8c
+		summarizeBy: none
+		sourceColumn: START_DATE
+
+		variation Variation
+			isDefault
+			relationship: b9724ed1-5c18-4c7c-aa86-62a2688e19eb
+			defaultHierarchy: LocalDateTable_79a8e943-dd26-40cb-94b6-2d0190066972.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column END_DATE
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: d7b8ae0a-2345-400f-afe3-69315d51b3b5
+		summarizeBy: none
+		sourceColumn: END_DATE
+
+		variation Variation
+			isDefault
+			relationship: b4e340b8-5bae-4664-936f-3c707712b2b2
+			defaultHierarchy: LocalDateTable_719ebd9c-a897-4708-87fe-032032554f77.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column IS_ACTIVE
+		dataType: string
+		lineageTag: 35773891-6e28-499d-8854-4175be755073
+		summarizeBy: none
+		sourceColumn: IS_ACTIVE
+
+		annotation SummarizationSetBy = Automatic
+
+	column OBJECTIVE
+		dataType: string
+		lineageTag: be480ea8-fe74-44df-bef2-cc2e57f2eda3
+		summarizeBy: none
+		sourceColumn: OBJECTIVE
+
+		annotation SummarizationSetBy = Automatic
+
+	column PROMOTION_CODE
+		dataType: string
+		lineageTag: b82bd38b-1325-4414-bf19-73b9c5b8e31e
+		summarizeBy: none
+		sourceColumn: PROMOTION_CODE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TARGET_AUDIENCE_AGE
+		dataType: string
+		lineageTag: 6bf7538c-e530-4aa7-9ca3-f059fcbfa764
+		summarizeBy: none
+		sourceColumn: TARGET_AUDIENCE_AGE
+
+		annotation SummarizationSetBy = Automatic
+
+	column TARGET_AUDIENCE_GENDER
+		dataType: string
+		lineageTag: 9962911b-806a-49be-85ee-f9f0fed9fbd1
+		summarizeBy: none
+		sourceColumn: TARGET_AUDIENCE_GENDER
+
+		annotation SummarizationSetBy = Automatic
+
+	column CREATED_AT
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: b5c1502e-acec-4bbc-a623-f280e3e1ec2e
+		summarizeBy: none
+		sourceColumn: CREATED_AT
+
+		variation Variation
+			isDefault
+			relationship: a23ed3d7-c878-4ddb-883b-b7f0c113116d
+			defaultHierarchy: LocalDateTable_1edc8ca4-d9da-4b54-a942-53e5be4079f9.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	column ETL_UPDATED_AT
+		dataType: dateTime
+		formatString: Long Date
+		lineageTag: c64d079b-b2ec-4394-9bfc-ce9fd5f7857f
+		summarizeBy: none
+		sourceColumn: ETL_UPDATED_AT
+
+		variation Variation
+			isDefault
+			relationship: 1ff96363-850c-48c2-a9b0-7d614ef80421
+			defaultHierarchy: LocalDateTable_759dc5d7-88b3-4804-9027-2d38632becf7.'Date Hierarchy'
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation UnderlyingDateTimeDataType = Date
+
+	partition DIM_CAMPAIGN = m
+		mode: import
+		source =
+				let
+				    Source = Snowflake.Databases("pandata_partner.snowflakecomputing.com","COMPUTE_WH"),
+				    PANDATA_ECOMMERCE_Database = Source{[Name="PANDATA_ECOMMERCE",Kind="Database"]}[Data],
+				    PUBLIC_Schema = PANDATA_ECOMMERCE_Database{[Name="PUBLIC",Kind="Schema"]}[Data],
+				    DIM_CAMPAIGN_Table = PUBLIC_Schema{[Name="DIM_CAMPAIGN",Kind="Table"]}[Data]
+				in
+				    DIM_CAMPAIGN_Table
+
+	annotation PBI_ResultType = Table
+
+	annotation PBI_NavigationStepName = Navigation
+

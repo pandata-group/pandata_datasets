@@ -1,0 +1,254 @@
+table 'MEASURES TABLE'
+	lineageTag: 83032a30-f3b7-4ecb-a2c0-17494364200e
+
+	/// KPI represents the total income generated from all sales transactions before any deductions (such as discounts, costs, or taxes). It is a key measure of business performance and financial health.
+	measure 'Total Revenue' = SUM(FACT_SALES[REVENUE])
+		lineageTag: 102d0ea0-e967-477d-a195-2cf97df06b4e
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// KPI measures the total number of customer orders placed over a given period. It provides insight into sales volume and overall business activity.
+	measure 'Total Orders' = COUNT(FACT_CUSTOMER_ORDERS[ORDER_ID])
+		formatString: 0
+		lineageTag: daef15c5-7208-4857-8914-5480bb0a15b9
+
+	/// Measures the percentage of revenue that remains as profit after deducting costs. It indicates the overall profitability of sales transactions.
+	measure 'Profit Margin' = DIVIDE(SUM(FACT_SALES[PROFIT]), SUM(FACT_SALES[REVENUE]))
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: f4bd78ef-75d2-45ae-96da-e93479b99485
+
+	/// KPI measures the total number of distinct female customers who have made a purchase or engaged with the business.
+	measure 'Unique Female Customers' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(DIM_CUSTOMER[CUSTOMER_ID]),
+			    DIM_CUSTOMER[GENDER] = "Female"
+			)
+		formatString: 0
+		lineageTag: 83ec458e-21cf-4746-b333-309cce2eea4c
+
+	/// KPI measures the total number of distinct male customers who have made a purchase or engaged with the business.
+	measure 'Unique Male Customers' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(DIM_CUSTOMER[CUSTOMER_ID]),
+			    DIM_CUSTOMER[GENDER] = "Male"
+			)
+		formatString: 0
+		lineageTag: b57d481c-07bf-49a8-8680-082510415b56
+
+	/// KPI measures the total number of newly acquired customers within a given period.
+	measure 'New Customers' =
+			
+			CALCULATE(
+			    DISTINCTCOUNT(DIM_CUSTOMER[CUSTOMER_ID]),
+			    FILTER(DIM_CUSTOMER, DIM_CUSTOMER[IS_NEW_CUSTOMER] = "Yes")
+			)
+		formatString: 0
+		lineageTag: 52e7a1d6-87d4-4988-88b4-d6deecfc6af1
+
+	/// Measures the percentage of customers who return to make additional purchases over time. It helps businesses understand customer loyalty and engagement.
+	measure 'Customer Retention Rate All Time' = ```
+			
+			DIVIDE(
+			    [Returning Customers], 
+			    DISTINCTCOUNT(FACT_CUSTOMER_ORDERS[CUSTOMER_ID]), 
+			    0
+			)
+			```
+		formatString: 0.0%;-0.0%;0.0%
+		lineageTag: 5569d98b-ee1b-40a1-8875-ed023f876546
+
+	/// KPI measures the number of customers who have placed multiple orders over an extended period, specifically those who have made purchases on more than 35 different days.
+	measure 'Returning Customers' = ```
+			
+			CALCULATE(
+			    DISTINCTCOUNT(FACT_CUSTOMER_ORDERS[CUSTOMER_ID]),
+			    FILTER(
+			        VALUES(FACT_CUSTOMER_ORDERS[CUSTOMER_ID]),
+			        CALCULATE(
+			            DISTINCTCOUNT(FACT_CUSTOMER_ORDERS[ORDER_DATE_ID])
+			        ) > 35
+			    )
+			)
+			
+			```
+		formatString: 0
+		lineageTag: 0e7c572b-4c68-45bc-a230-0def8a942b24
+
+	/// Metric measures how often a customer places an order on average within a given period. It helps in understanding customer buying behavior and loyalty.
+	measure 'Purchase Frequency' =
+			
+			DIVIDE(
+			    COUNT(FACT_CUSTOMER_ORDERS[ORDER_ID]),
+			    DISTINCTCOUNT(FACT_CUSTOMER_ORDERS[CUSTOMER_ID])
+			)
+		formatString: 0
+		lineageTag: 9fede5f8-fda7-47da-a57b-786a76975e95
+
+	/// Measures the total revenue a business expects to earn from a customer over their entire relationship with the company. It helps businesses understand how much a customer is worth over time.
+	measure 'Customer Lifetime Value (CLV)' =
+			
+			VAR AvgPurchaseValue = DIVIDE(SUM(FACT_SALES[REVENUE]), COUNT(FACT_CUSTOMER_ORDERS[ORDER_ID]))
+			VAR PurchaseFrequency = DIVIDE(COUNT(FACT_CUSTOMER_ORDERS[ORDER_ID]), DISTINCTCOUNT(FACT_CUSTOMER_ORDERS[CUSTOMER_ID]))
+			VAR AvgCustomerLifespan = 3 -- Assume 3 years as avg lifespan
+			RETURN
+			AvgPurchaseValue * PurchaseFrequency * AvgCustomerLifespan
+		lineageTag: 0abee823-d269-461d-8704-9ed7c081bb12
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// The Return on Investment (ROI) KPI measures the profitability of marketing campaigns by comparing the revenue generated against the advertising spend. It indicates how effectively marketing efforts are translating into financial returns.
+	measure ROI = ```
+			
+			DIVIDE(
+			    SUM(FACT_MARKETING[REVENUE]) - SUM(FACT_MARKETING[AD_SPEND]), 
+			    SUM(FACT_MARKETING[AD_SPEND]), 
+			    0
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 65af9d17-f506-41ca-8963-053016dafddb
+
+	/// Metric calculates the average cost of acquiring a new customer through marketing efforts.
+	measure 'Customer Acquisition Cost (CAC)' = ```
+			
+			CALCULATE(
+			    DIVIDE(
+			        SUM(FACT_MARKETING[AD_SPEND]), 
+			        DISTINCTCOUNT(DIM_CUSTOMER[CUSTOMER_ID]), 
+			        0
+			    ),
+			    DIM_CUSTOMER[IS_NEW_CUSTOMER] = "Yes"
+			)
+			```
+		formatString: \$#,0.###############;(\$#,0.###############);\$#,0.###############
+		lineageTag: a9726e45-6044-4319-9218-cb6ba9d460e1
+
+	/// A marketing performance metric that measures the percentage of people who click on an advertisement or marketing campaign after seeing it.
+	measure 'Click-Through Rate (CTR)' = ```
+			
+			DIVIDE(
+			    SUM(FACT_MARKETING[CLICKS]), 
+			    SUM(FACT_MARKETING[IMPRESSIONS]), 
+			    0
+			) * 100
+			```
+		lineageTag: 731d4ead-336e-4753-8555-cb17e15c82f6
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// The average cost paid for each click on a marketing campaign or advertisement. It is calculated by dividing the total ad spend by the total number of clicks.
+	measure 'Cost Per Click (CPC)' = ```
+			
+			DIVIDE(
+			    SUM(FACT_MARKETING[AD_SPEND]), 
+			    SUM(FACT_MARKETING[CLICKS]), 
+			    0
+			)
+			```
+		lineageTag: d7e8a725-b269-403d-b767-81d3c624f342
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// Measure calculates the net stock availability in inventory by considering both incoming and outgoing stock transactions
+	measure 'Net Stock Availability' = ```
+			
+			VAR TotalIncomingStock = SUM(FACT_SUPPLIER_ORDERS[ORDER_QTY])
+			VAR TotalOutgoingStock = SUM(FACT_CUSTOMER_ORDERS[ORDER_QTY])
+			VAR Occupancy = TotalIncomingStock - TotalOutgoingStock
+			
+			RETURN Occupancy
+			
+			```
+		formatString: 0
+		lineageTag: ade18dc3-1451-4048-b470-7f2723932084
+
+	/// Measures the percentage of supplier orders that were successfully delivered out of the total supplier orders placed. It helps track supplier reliability and supply chain efficiency.
+	measure 'Delivery Rate' = ```
+			
+			DIVIDE(
+			    COUNTROWS(
+			        FILTER(FACT_SUPPLIER_ORDERS, FACT_SUPPLIER_ORDERS[ORDER_STATUS] = "Delivered")
+			    ), 
+			    COUNT(FACT_SUPPLIER_ORDERS[SUPPLIER_ORDER_ID]), 
+			    0
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: da623292-7462-4498-9fdb-6f0aa146a645
+
+	/// Calculates the average supplier lead time, which represents the average number of days it takes for a supplier order to arrive after being placed.
+	measure 'Avg Supplier Lead Time (Days)' = ```
+			
+			AVERAGEX(
+			    FACT_SUPPLIER_ORDERS, 
+			    DATEDIFF(FACT_SUPPLIER_ORDERS[ORDER_DATE_ID], FACT_SUPPLIER_ORDERS[ARRIVAL_DATE], DAY)
+			)
+			
+			```
+		lineageTag: 019f8fa5-3cab-4007-8a7a-28d692ba56c4
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	/// The Sales Growth % KPI measures the percentage increase or decrease in revenue compared to the previous period (month-over-month growth). It helps businesses track sales performance trends over time.
+	measure 'Sales Growth %' = ```
+			
+			VAR PreviousPeriodSales = 
+			    CALCULATE([Total Revenue], DATEADD(DIM_DATE[DATE_ID], -1, MONTH))
+			VAR CurrentPeriodSales = [Total Revenue]
+			RETURN 
+			IF(
+			    PreviousPeriodSales > 0, 
+			    DIVIDE(CurrentPeriodSales - PreviousPeriodSales, PreviousPeriodSales, 0),
+			    BLANK()
+			)
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 7e88bf61-f417-45a0-bbea-f52dfc42684d
+
+	measure 'Discount Utilization %' = ```
+			
+			DIVIDE(
+			    SUMX(
+			        SUMMARIZE(
+			            FACT_SALES, 
+			            FACT_SALES[ORDER_ID], 
+			            "Total Discount", SUM(FACT_SALES[DISCOUNT])
+			        ), 
+			        [Total Discount]
+			    ), 
+			    SUM(FACT_SALES[REVENUE]), 
+			    0
+			)
+			
+			```
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: e2464c87-8a80-4fbe-b9fc-8cac6229dc4d
+
+	measure Supplier_Fulfillment_Efficiency =
+			
+			DIVIDE(
+			    CALCULATE(COUNT(FACT_SUPPLIER_ORDERS[SUPPLIER_ORDER_ID]), FACT_SUPPLIER_ORDERS[ARRIVAL_DATE] <= FACT_SUPPLIER_ORDERS[ESTIMATED_ARRIVAL_DATE]),
+			    COUNT(FACT_SUPPLIER_ORDERS[SUPPLIER_ORDER_ID]),
+			    0
+			)
+		formatString: 0.00%;-0.00%;0.00%
+		lineageTag: 52b201f4-0d25-474a-ba8d-0fb329125ed8
+
+	column Column
+		isHidden
+		formatString: 0
+		lineageTag: 6cb1a6b9-8e9b-4a14-8f2b-b95ecdfba483
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Column]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'MEASURES TABLE' = calculated
+		mode: import
+		source = Row("Column", BLANK())
+
+	annotation PBI_Id = 2216eb96f1da4921893edb2db02ef884
+

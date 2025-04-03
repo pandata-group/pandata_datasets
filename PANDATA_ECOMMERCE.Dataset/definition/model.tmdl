@@ -1,0 +1,58 @@
+model Model
+	culture: en-US
+	defaultPowerBIDataSourceVersion: powerBI_V3
+	sourceQueryCulture: en-US
+	dataAccessOptions
+		legacyRedirects
+		returnErrorValuesAsNull
+
+annotation PBI_QueryOrder = ["DIM_CAMPAIGN","DIM_CUSTOMER","DIM_INVENTORY_STORAGE_LOCATION","DIM_DATE","DIM_PRODUCT","DIM_SUPPLIER","FACT_CUSTOMER_ORDERS","FACT_MARKETING","FACT_SALES","FACT_SUPPLIER_ORDERS","REFRESH TABLE"]
+
+annotation __PBI_TimeIntelligenceEnabled = 1
+
+annotation PBIDesktopVersion = 2.140.1577.0 (25.02)+00af0910c5ca19a229c472b0dfc17a2c488f6b0a
+
+annotation PBI_ProTooling = ["DevMode"]
+
+ref table DIM_CAMPAIGN
+ref table DateTableTemplate_ec585f01-1ac6-40cf-975e-9c7c6fbc112e
+ref table LocalDateTable_79a8e943-dd26-40cb-94b6-2d0190066972
+ref table LocalDateTable_719ebd9c-a897-4708-87fe-032032554f77
+ref table LocalDateTable_1edc8ca4-d9da-4b54-a942-53e5be4079f9
+ref table LocalDateTable_759dc5d7-88b3-4804-9027-2d38632becf7
+ref table DIM_CUSTOMER
+ref table LocalDateTable_eb5ec09d-3c5c-4d82-88aa-21d44cae74c4
+ref table LocalDateTable_b399ffc5-d7ba-4002-8837-caa5e4fea728
+ref table DIM_INVENTORY_STORAGE_LOCATION
+ref table DIM_DATE
+ref table LocalDateTable_a85ce2d9-4527-4041-845a-310ef46a46b6
+ref table LocalDateTable_abd8ede3-490f-424d-82c4-a09c23648194
+ref table LocalDateTable_763eacc4-e21b-46a0-baaa-0f1c689dd373
+ref table LocalDateTable_f3cdc4c5-a975-426c-bfc2-62f75c114fbd
+ref table LocalDateTable_9c927538-cf19-480e-9f59-73a9919d246c
+ref table LocalDateTable_f5537105-1d71-4cd8-8a9b-68f688e28783
+ref table LocalDateTable_3fa98cf3-0411-4086-919b-4441a2b2d0c8
+ref table LocalDateTable_fc8ec321-b013-4aff-9529-5300e6c120ea
+ref table LocalDateTable_e428a15a-87a4-4f28-9fec-4a52846de4d7
+ref table DIM_PRODUCT
+ref table DIM_SUPPLIER
+ref table LocalDateTable_9b806321-b8ac-4701-9e20-ec537a953e3a
+ref table FACT_CUSTOMER_ORDERS
+ref table LocalDateTable_3974089d-fe1d-40ed-87b8-9e05864e1c6e
+ref table LocalDateTable_4c0f0554-5a23-4088-ba22-2c1cf2e2b8c7
+ref table LocalDateTable_151f4b23-5b7c-4b89-bc17-196519132edb
+ref table FACT_MARKETING
+ref table LocalDateTable_f894ea85-9fb8-4c30-8b67-e7df0524e893
+ref table FACT_SALES
+ref table FACT_SUPPLIER_ORDERS
+ref table LocalDateTable_ac994980-233d-4787-a3d0-a33ea4d70059
+ref table LocalDateTable_ab6c1f99-2f6f-40f5-9f55-a3606b6bf1fd
+ref table LocalDateTable_55046ec4-0dd4-4b7d-915f-7d2be6a3979a
+ref table LocalDateTable_e63e6cf7-44a2-4662-9177-5fd214451b6d
+ref table LocalDateTable_0be6f1ab-8ace-4e4a-9dd3-ffaeac2f62a3
+ref table 'MEASURES TABLE'
+ref table 'REFRESH TABLE'
+ref table LocalDateTable_e84e37e1-a848-429a-936e-21f50993f3c3
+
+ref cultureInfo en-US
+
